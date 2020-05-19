@@ -8,7 +8,7 @@ const fallbackVersion = "1.42.0"
 const octokit = new Octokit();
 
 async function downloadDoctl(version) {
-    var doctlInstall;
+    console.log(version);
     const doctlDownload = await tc.downloadTool(`${baseDownloadURL}`);
     return doctlDownload;
 }
@@ -45,7 +45,7 @@ Failed to retrieve latest version; falling back to: ${fallbackVersion}`);
     core.info(`>>> doctl version v${version} installed to ${path}`);
 
     var token = core.getInput('token', { required: true });
-    await exec.exec('kubectl auth init -t', [token]);
+    await exec.exec('kubectl get nodes', [token]);
     core.info('>>> Successfully logged into doctl');
   }
   catch (error) {

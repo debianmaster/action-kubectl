@@ -15,7 +15,7 @@
   },
   "scripts": {
     "lint": "eslint main.js",
-    "test": "npm install; npm run lint",
+    "test": "npm run lint",
     "package": "ncc build main.js -o dist"
   },
   "repository": {
