@@ -19,16 +19,14 @@ async function run() {
     if ((!version) || (version.toLowerCase() === 'latest')) {
         version = await octokit.repos.getLatestRelease({
             owner: 'debianmaster',
-            repo: 'kubectl'
+            repo: 'action-kubectl'
         }).then(result => {
             return result.data.name;
         }).catch(error => {
             // GitHub rate-limits are by IP address and runners can share IPs.
             // This mostly effects macOS where the pool of runners seems limited.
             // Fallback to a known version if API access is rate limited.
-            core.warning(`${error.message}
-
-Failed to retrieve latest version; falling back to: ${fallbackVersion}`);
+            core.warning(`${error.message} Failed to retrieve latest version; falling back to: ${fallbackVersion}`);
             return fallbackVersion;
         });
     }
